@@ -7,20 +7,26 @@
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
+    "@types/koa": "^2.13.4",
+    "@types/koa-static": "^4.0.2",
     "@types/node": "^16.11.26",
     "@types/react": "^18.0.4",
     "@types/react-dom": "^18.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-player": "^2.10.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start1": "node build/server/index.js ${DIRECTORIES}",
+    "build1": "webpack && tsc",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "open": "npm run build1 && OPEN=1 npm start1"
   },
   "eslintConfig": {
     "extends": [
