@@ -30,7 +30,7 @@ const Folder = ({ path, name }: FolderProps) => {
                 if (file.isFolder) {
                     return <Folder key={filepath.join('/')} path={filepath} name={file.name} />;
                 } else {
-                    index==0?firstName=file.name:null
+                    firstName = index==0?file.name:''
                     return File(file.name, explorerContext.startVideo);
                 }
             })}

@@ -95,7 +95,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
                 if (name1)
                 {
                     pointer[name1] = "FILE";
-                    firstVideo.length==0?firstVideo=name1:null
+                    firstVideo = firstVideo.length==0?name1:''
 
                 }
                 break;
@@ -140,13 +140,13 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             }
             console.log("incoming message[0].filename:"+message[0].filename)
 
-            message[0].filename?setVideoFilePath(message[0].filename):null
+            if(message[0].filename){setVideoFilePath(message[0].filename)}
 
         } else {
             handleFileEvent(message);
             console.log("incoming message.filename:"+message.filename)
 
-            message.filename?setVideoFilePath(message.filename):null
+            if (message.filename){setVideoFilePath(message.filename)}
         }
 
     };
