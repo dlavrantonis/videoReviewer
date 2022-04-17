@@ -23,15 +23,15 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const [videoFilePath, setVideoFilePath] = useState("");
 
 
-        
-
     const wsRef = useRef<WebSocket|null>(null);
     const ws = wsRef.current;
     var firstVideo:string = ""
+    var pingIntervalId:any
 
     function cleanup()
     {
         console.log("cleanup")
+        clearInterval(pingIntervalId)
         ws?.close()
     }
 
@@ -55,9 +55,9 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             };
             wsRef.current.onopen = () => {
                 console.log("CONNECTED");
-                setInterval(()=>{
+                pingIntervalId = setInterval(()=>{
                     wsRef.current?.send("{\"type\":\"ping\"}");
-                },10000);            
+                },55000);            
                 setStatus(WebSocket.OPEN)
             };
         }
@@ -66,7 +66,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     useEffect(() => {
         console.log("useEffect ExplorerContext")
         connect();
-       // return cleanup
+        return cleanup
     }, []);
 
     switch (status) {
