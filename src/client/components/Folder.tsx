@@ -14,7 +14,7 @@ const Folder = ({ path, name }: FolderProps) => {
     const [showChildren, setShowChildren] = useState(true);
     var firstName:string =""
     useEffect(() => {
-        console.log(" useEffect")
+        console.log(" useEffect showchildren:"+showChildren)
         return () => { if (showChildren) explorerContext.open(path); };
     }, []);
 
