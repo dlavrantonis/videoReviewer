@@ -45,6 +45,8 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             console.log("connecting to:"+wsurl)
             setStatus(WebSocket.CONNECTING);
             wsRef.current.onclose = () => {
+                console.log("ws onclose")
+
                 // clear state
                 setTree({});
                 setRoots([]);
@@ -58,7 +60,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     useEffect(() => {
         console.log("useEffect ExplorerContext")
         connect();
-        return cleanup
+       // return cleanup
     }, []);
 
     switch (status) {
