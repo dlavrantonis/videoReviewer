@@ -27,7 +27,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const ws = wsRef.current;
     var firstVideo:string = ""
     var pingIntervalId:any
-    var emptyFolder:boolean=true;
+    var emptyFolder:boolean=false;
 
     function cleanup()
     {
