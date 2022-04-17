@@ -53,7 +53,13 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
                 setOpened(new Map());
                 setStatus(WebSocket.CLOSED);
             };
-            wsRef.current.onopen = () => {console.log("CONNECTED");setStatus(WebSocket.OPEN)};
+            wsRef.current.onopen = () => {
+                console.log("CONNECTED");
+                setInterval(()=>{
+                    wsRef.current?.send("ping");
+                },10000);            
+                setStatus(WebSocket.OPEN)
+            };
         }
     }
 
