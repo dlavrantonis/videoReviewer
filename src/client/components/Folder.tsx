@@ -19,7 +19,7 @@ const Folder = ({ path, name }: FolderProps) => {
         return () => { if (showChildren) {explorerContext.close(path)}; };
     }, []);
 
-    let fileListing = <span>Loading...</span>;
+    let fileListing = <span> is empty</span>;
     if (files != null && files.length>0) {
         //console.log(" files:"+JSON.stringify(files))
         //console.log(" files[0].name:"+files[0].name)
