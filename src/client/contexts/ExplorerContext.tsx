@@ -46,7 +46,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
                 setOpened(new Map());
                 setStatus(WebSocket.CLOSED);
             };
-            wsRef.current.onopen = () => setStatus(WebSocket.OPEN);
+            wsRef.current.onopen = () => {console.log("CONNECTED");setStatus(WebSocket.OPEN)};
         }
     }
 
@@ -58,7 +58,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     switch (status) {
         case WebSocket.CLOSED: return <h2 onClick={connect}>Connection Closed. Click to Reconnect.</h2>;
         case WebSocket.CONNECTING: return <h2>Connecting...</h2>;
-        case WebSocket.OPEN: console.log("CONNECTED");break;
+        case WebSocket.OPEN: console.log("status is OPEN");break;
         default: return <h2>Not Connected Yet</h2>;
     }
 
