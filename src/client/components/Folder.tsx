@@ -15,7 +15,8 @@ const Folder = ({ path, name }: FolderProps) => {
     var firstName:string =""
     useEffect(() => {
         console.log(" useEffect showchildren:"+showChildren)
-        return () => { if (showChildren) explorerContext.open(path); };
+        if (showChildren) {explorerContext.open(path)}
+        //return () => { if (showChildren) {explorerContext.open(path)}; };
     }, []);
 
     let fileListing = <span>Loading...</span>;
