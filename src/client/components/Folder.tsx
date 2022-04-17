@@ -38,6 +38,7 @@ const Folder = ({ path, name }: FolderProps) => {
         </ul>;
 
         if (!files.length) {
+            fileListing = <ul><li><em>Empty folder</em></li></ul>;
         }
     }
     console.log("Folder:"+name)
