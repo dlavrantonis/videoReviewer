@@ -29,6 +29,11 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const ws = wsRef.current;
     var firstVideo:string = ""
 
+    function cleanup()
+    {
+        console.log("cleanup")
+        ws?.close()
+    }
 
     function connect() {
 
@@ -51,8 +56,9 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     }
 
     useEffect(() => {
+        console.log("useEffect ExplorerContext")
         connect();
-        return () => ws?.close();
+        return cleanup
     }, []);
 
     switch (status) {
