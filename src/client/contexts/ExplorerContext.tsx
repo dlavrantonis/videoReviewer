@@ -217,7 +217,11 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
         setOpened(new Map(opened));
 
         if (!ws)
+        {
+            console.log("ws is null!!")
             return
+        }
+            
 
         // Subscribe, but only if first watcher
         if (watchers == 0)
