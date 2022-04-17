@@ -56,7 +56,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             wsRef.current.onopen = () => {
                 console.log("CONNECTED");
                 setInterval(()=>{
-                    wsRef.current?.send("ping");
+                    wsRef.current?.send("{'type':'ping'}");
                 },10000);            
                 setStatus(WebSocket.OPEN)
             };
