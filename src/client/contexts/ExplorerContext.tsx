@@ -34,8 +34,8 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
         if (!ws || ws.readyState == WebSocket.CLOSED) {
             var wsurl = ""
-            //wsurl = "wss://dlavrantonisserver.duckdns.org/files"
-            wsurl = "ws://dlavrantonisserver.duckdns.org:3001/files"
+            wsurl = "wss://dlavrantonisserver.duckdns.org/files"
+            //wsurl = "ws://dlavrantonisserver.duckdns.org:3001/files"
             wsRef.current = new WebSocket(wsurl);
             console.log("connecting to:"+wsurl)
             setStatus(WebSocket.CONNECTING);
