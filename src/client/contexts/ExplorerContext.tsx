@@ -33,7 +33,9 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     function connect() {
 
         if (!ws || ws.readyState == WebSocket.CLOSED) {
-            var wsurl = "wss://dlavrantonisserver.duckdns.org/files"
+            var wsurl = ""
+            //wsurl = "wss://dlavrantonisserver.duckdns.org/files"
+            wsurl = "ws://dlavrantonisserver.duckdns.org:3001/files"
             wsRef.current = new WebSocket(wsurl);
             console.log("connecting to:"+wsurl)
             setStatus(WebSocket.CONNECTING);
@@ -64,19 +66,19 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
         console.log("handleFileEvent msg:"+JSON.stringify(fileEvent))
 
         const { eventType, filename, pathname } = fileEvent;
-        console.log(" pathname:"+pathname)
-        console.log(" filename:"+filename)
-        console.log(" eventType:"+eventType)
+        //console.log(" pathname:"+pathname)
+        //console.log(" filename:"+filename)
+        //console.log(" eventType:"+eventType)
 
 
         const path = [...pathname.split("/").filter(p => p), filename];
-        console.log(" path:"+path)
+        //(" path:"+path)
 
         let pointer = tree;
         
         while (path.length > 1) {
             let nextChild = path.shift();
-            console.log(" path2:"+path)
+            //console.log(" path2:"+path)
             if (nextChild)
             {
                 let next = pointer[nextChild];
@@ -88,7 +90,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
                 pointer = next;
             }
         }
-        console.log(" path3:"+path)
+        //console.log(" path3:"+path)
 
         switch (eventType) {
             case "file":
@@ -140,13 +142,13 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             for (let m of message) {
                 handleFileEvent(m);
             }
-            console.log("incoming message[0].filename:"+message[0].filename)
+            //console.log("incoming message[0].filename:"+message[0].filename)
 
             if(message[0].filename){setVideoFilePath(message[0].filename)}
 
         } else {
             handleFileEvent(message);
-            console.log("incoming message.filename:"+message.filename)
+            //console.log("incoming message.filename:"+message.filename)
 
             if (message.filename){setVideoFilePath(message.filename)}
         }
@@ -156,7 +158,6 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
     const startVideo = (video:string) =>{
         console.log(" startVideo:"+video)
-
         setVideoFilePath(video)
     }
 
@@ -220,10 +221,22 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
         // Subscribe, but only if first watcher
         if (watchers == 0)
+        {
+            console.log("watchers ==0 sending:"+JSON.stringify({
+                type: "open",
+                pathname: pathname
+            }))
+
             ws.send(JSON.stringify({
                 type: "open",
                 pathname: pathname
             }));
+        }
+        else
+        {
+            console.log("watchers >0")
+        }
+
     };
     
     var videoPlayer

@@ -20,8 +20,8 @@ const Folder = ({ path, name }: FolderProps) => {
 
     let fileListing = <span>Loading...</span>;
     if (files != null && files.length>0) {
-        console.log(" files:"+JSON.stringify(files))
-        console.log(" files[0].name:"+files[0].name)
+        //console.log(" files:"+JSON.stringify(files))
+        //console.log(" files[0].name:"+files[0].name)
 
         
         fileListing = <ul>
@@ -37,21 +37,20 @@ const Folder = ({ path, name }: FolderProps) => {
         </ul>;
 
         if (!files.length) {
-            fileListing = <ul><li><em>Empty folder</em></li></ul>;
         }
     }
     console.log("Folder:"+name)
 
     return <li>
         <strong onClick={() => {
-            console.log("Folder onClick:"+path)
+            //console.log("Folder onClick:"+path)
             setShowChildren(!showChildren);
             if (showChildren) {
-                console.log("Folder onClick close:"+path)
+                //console.log("Folder onClick close:"+path)
 
                 explorerContext.close(path);
             } else {
-                console.log("Folder onClick open:"+path)
+                //console.log("Folder onClick open:"+path)
 
                 explorerContext.open(path);
             }
