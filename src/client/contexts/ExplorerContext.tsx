@@ -21,7 +21,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const [roots, setRoots] = useState<string[]>([]);
     const [status, setStatus] = useState(-1);
     const [videoFilePath, setVideoFilePath] = useState("");
-    const [emptyFolder, setEmptyFolder] = useState(true);
+    const [emptyFolder, setEmptyFolder] = useState(false);
 
 
     const wsRef = useRef<WebSocket|null>(null);
@@ -107,6 +107,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             }
         }
         //console.log(" path3:"+path)
+        setEmptyFolder(false)
         switch (eventType) {
             case "file":
                 let name1 = path.shift();
