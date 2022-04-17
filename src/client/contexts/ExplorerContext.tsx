@@ -267,9 +267,11 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
         {videoFilePath.length==0?
         null        
         :
-        <ReactPlayer   ref={player => { videoPlayer = player }}  url={"Review/"+videoFilePath} playing={true} 
-        height='640px' width='360px'
-        controls={true}  config={{ file: { attributes: {crossorigin: 'anonymous' }}}}/>
+        <div className="video-wrapper">
+
+            <ReactPlayer   ref={player => { videoPlayer = player }}  url={"Review/"+videoFilePath} playing={true} 
+            controls={true}  config={{ file: { attributes: {crossorigin: 'anonymous' }}}}/>
+        </div>
         }
         <ExplorerContext.Provider value={{ getChildren, open, close, roots,startVideo }}>
             {children}

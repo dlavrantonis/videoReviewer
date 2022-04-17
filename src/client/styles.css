@@ -37,3 +37,9 @@ ul.tree li:before {
 ul.tree li:last-child:before {
     border-left: 2px solid rgb(100, 100, 100);
 }
+
+.video-wrapper {
+    height: 100%;
+    width: 100%;
+    min-height: 225px;
+   }
