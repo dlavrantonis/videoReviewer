@@ -27,6 +27,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const ws = wsRef.current;
     var firstVideo:string = ""
     var pingIntervalId:any
+    var emptyFolder:boolean=true;
 
     function cleanup()
     {
@@ -106,7 +107,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             }
         }
         //console.log(" path3:"+path)
-
+        emptyFolder=false;
         switch (eventType) {
             case "file":
                 let name1 = path.shift();
@@ -138,6 +139,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
                 break;
             // Folder is empty, nothing to do
             case "empty":
+                emptyFolder=true;
                 break;
         }
 
@@ -263,19 +265,25 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
     return (
     <div>
-        <h2>Video Alerts</h2>
-        {videoFilePath.length==0?
-        null        
+        {emptyFolder==true?
+        <h2>There are no active alerts</h2>
         :
-        <div className="video-wrapper">
+        <>
+        <h2>Video Alerts</h2>
+            {videoFilePath.length==0?
+            null        
+            :
+            <div className="video-wrapper">
 
-            <ReactPlayer   ref={player => { videoPlayer = player }}  url={"Review/"+videoFilePath} playing={true} 
-            controls={true}  config={{ file: { attributes: {crossorigin: 'anonymous' }}}}/>
-        </div>
-        }
+                <ReactPlayer   ref={player => { videoPlayer = player }}  url={"Review/"+videoFilePath} playing={true} 
+                controls={true}  config={{ file: { attributes: {crossorigin: 'anonymous' }}}}/>
+            </div>
+            }
         <ExplorerContext.Provider value={{ getChildren, open, close, roots,startVideo }}>
             {children}
         </ExplorerContext.Provider>
+        </>
+        }
     </div>
 )
     
