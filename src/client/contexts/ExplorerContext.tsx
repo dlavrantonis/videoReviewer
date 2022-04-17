@@ -83,7 +83,8 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
         //console.log(" pathname:"+pathname)
         //console.log(" filename:"+filename)
         //console.log(" eventType:"+eventType)
-
+        if (eventType=="ping")
+            return;
 
         const path = [...pathname.split("/").filter(p => p), filename];
         //(" path:"+path)
