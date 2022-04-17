@@ -21,13 +21,13 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const [roots, setRoots] = useState<string[]>([]);
     const [status, setStatus] = useState(-1);
     const [videoFilePath, setVideoFilePath] = useState("");
+    const [emptyFolder, setEmptyFolder] = useState(true);
 
 
     const wsRef = useRef<WebSocket|null>(null);
     const ws = wsRef.current;
     var firstVideo:string = ""
     var pingIntervalId:any
-    var emptyFolder:boolean=false;
 
     function cleanup()
     {
@@ -107,7 +107,6 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             }
         }
         //console.log(" path3:"+path)
-        emptyFolder=false;
         switch (eventType) {
             case "file":
                 let name1 = path.shift();
@@ -139,11 +138,9 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
                 break;
             // Folder is empty, nothing to do
             case "empty":
-                emptyFolder=true;
+                setEmptyFolder(true)
                 break;
         }
-
-
         setTree({ ...tree });
     }
 
