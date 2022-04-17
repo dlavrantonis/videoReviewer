@@ -21,7 +21,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const [roots, setRoots] = useState<string[]>([]);
     const [status, setStatus] = useState(-1);
     const [videoFilePath, setVideoFilePath] = useState("");
-    const [emptyFolder, setEmptyFolder] = useState(false);
+    //const [emptyFolder, setEmptyFolder] = useState(false);
 
 
     const wsRef = useRef<WebSocket|null>(null);
@@ -107,7 +107,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
             }
         }
         //console.log(" path3:"+path)
-        setEmptyFolder(false)
+        //setEmptyFolder(false)
         switch (eventType) {
             case "file":
                 let name1 = path.shift();
@@ -139,7 +139,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
                 break;
             // Folder is empty, nothing to do
             case "empty":
-                setEmptyFolder(true)
+                //setEmptyFolder(true)
                 break;
         }
         setTree({ ...tree });
@@ -263,7 +263,7 @@ const ExplorerProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
     return (
     <div>
-        {emptyFolder==true?
+        {false?
         <h2>There are no active alerts</h2>
         :
         <>
